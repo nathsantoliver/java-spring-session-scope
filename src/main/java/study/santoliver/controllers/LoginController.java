@@ -22,16 +22,14 @@ public class LoginController {
     }
 
     @PostMapping("/")
-    public String loginPost(
-            @RequestParam String username,
-            @RequestParam String password,
-            Model model
-    ) {
+    public String loginPost(@RequestParam String username,
+                            @RequestParam String password, Model model) {
         loginProcessor.setUsername(username);
         loginProcessor.setPassword(password);
         boolean loggedIn = loginProcessor.login();
 
         if (loggedIn) {
+            // when the user successfully authenticates, the app redirects them to the main page
             return "redirect:/main";
         }
 
